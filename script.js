@@ -1,3 +1,27 @@
+document.addEventListener('DOMContentLoaded', function() {
+  var music = document.getElementById('bg-music');
+  var started = false;
+
+  function startMusic() {
+    if (!started) {
+      music.volume = 0.4;
+      var playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          started = true;
+        }).catch(error => {
+          console.error("Playback prevented:", error);
+        });
+      }
+    }
+  }
+
+  document.addEventListener('click', startMusic);
+});
+
+
+
+
 var content = document.getElementsByClassName('content')[0];
 var width = content.offsetWidth;
 var height = content.offsetHeight;
